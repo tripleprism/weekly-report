@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- 内部周报，不希望被搜索引擎收录 -->
+<meta name="robots" content="noindex, nofollow" />
+<!-- 防止浏览器缓存旧页：页面为前端渲染，缓存会让人看到旧的渲染结果 -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>邢茹娉 43周工作汇报｜2026-W43</title>
+<style>
+:root{
+  --bg:#f4f6fb; --card:#ffffff; --ink:#16202e; --sub:#5d6b7e; --body:#44546a;
+  --line:#e5eaf2; --brand:#2563eb; --brand-soft:#eaf1ff;
+  --green:#0f9d6b; --green-soft:#e7f6ef;
+  --amber:#d97706; --amber-soft:#fdf3e6;
+  --red:#dc2626;  --red-soft:#fdeaea;
+  --slate:#64748b; --slate-soft:#f1f5f9;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.65; padding:26px 16px 64px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px;margin:0 auto;}
+a{color:var(--brand);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* ---------- 工具栏 ---------- */
+.toolbar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:12px 14px;margin-bottom:18px;box-shadow:0 2px 10px rgba(22,32,46,.04);
+  position:sticky;top:10px;z-index:20;
+}
+.toolbar .grp{display:flex;align-items:center;gap:8px;}
+.toolbar .sep{width:1px;height:24px;background:var(--line);}
+.btn{
+  font:inherit;font-size:13.5px;font-weight:600;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:9px;
+  padding:7px 13px;cursor:pointer;transition:.15s;white-space:nowrap;
+}
+.btn:hover{border-color:#c8d5ea;background:#fafcff;}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;}
+.btn.primary:hover{background:#1d4ed8;}
+select,input[type=date]{
+  font:inherit;font-size:13.5px;color:var(--ink);background:#fff;
+  border:1px solid var(--line);border-radius:9px;padding:7px 10px;cursor:pointer;
+}
+.hint{font-size:12.5px;color:var(--sub);margin-left:auto;}
+.label-sm{font-size:12.5px;color:var(--sub);font-weight:600;}
+
+/* ---------- 草稿提示条 ---------- */
+.draftbar{
+  margin:14px 0 0;padding:11px 16px;border-radius:12px;font-size:13px;font-weight:700;
+  background:#fef3c7;border:1px solid #fcd34d;color:#92400e;
+}
+
+/* ---------- 逐日进展（紧凑版：每天一行） ---------- */
+.days{margin-top:0;border-top:1px solid var(--line);}
+.day{display:flex;gap:14px;padding:10px 2px;border-bottom:1px solid var(--line);}
+.day:last-child{border-bottom:0;padding-bottom:2px;}
+.d-when{flex:0 0 74px;display:flex;flex-direction:column;gap:1px;padding-top:1px;}
+.d-date{font-weight:800;font-size:13.5px;color:var(--ink);letter-spacing:.3px;
+  font-variant-numeric:tabular-nums;}
+.d-wd{font-size:11px;font-weight:700;color:var(--brand);}
+.d-body{flex:1;min-width:0;}
+.d-line{font-size:13.5px;line-height:1.68;color:var(--sub);}
+.d-line b{color:var(--ink);}
+.d-theme{font-weight:800;color:var(--ink);}
+.d-chg-line{margin-top:4px;font-size:12.5px;line-height:1.62;color:#92400e;}
+.d-chg-line b{color:#7c2d12;}
+.d-chg-line .d-tag{
+  display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.4px;
+  background:#fde68a;color:#92400e;border-radius:4px;padding:1px 6px;
+  margin-right:7px;vertical-align:1px;
+}
+
+/* ---------- 顶部横幅 ---------- */
+.hero{
+  background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 55%,#1e3a8a 100%);
+  color:#fff;border-radius:18px;padding:30px 34px;
+  box-shadow:0 12px 32px rgba(37,99,235,.20);position:relative;overflow:hidden;
+}
+.hero:after{
+  content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;
+  background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);border-radius:50%;
+}
+.hero .tag{font-size:13px;opacity:.88;letter-spacing:.6px;}
+.hero h1{font-size:27px;margin:9px 0 8px;font-weight:700;line-height:1.35;}
+.hero .meta{font-size:14px;opacity:.93;}
+.hero .badges{margin-top:14px;display:flex;gap:9px;flex-wrap:wrap;}
+.hero .badges span{
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);
+  padding:4px 13px;border-radius:999px;font-size:12.5px;font-weight:600;
+}
+
+/* ---------- KPI ----------
+   auto-fit：KPI 数量由内容决定，不要为了填满 4 格硬凑指标（2026-09-18 Tesse 划掉两个凑数项）。
+   2 个就排 2 格、3 个排 3 格，不会留空位。 */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:18px 0 0;}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 15px;text-align:center;position:relative;}
+/* KPI 也标注归属项目，和下面「按项目分簇」的读法保持一致 */
+.kpi .kp{
+  display:inline-block;font-size:11.5px;font-weight:800;color:var(--brand);
+  background:var(--brand-soft);border-radius:999px;padding:2px 10px;margin-bottom:9px;
+}
+.kpi .num{font-size:26px;font-weight:800;color:var(--brand);line-height:1.2;
+  font-variant-numeric:tabular-nums;}
+.kpi .num small{font-size:14px;font-weight:600;margin-left:1px;}
+.kpi .lab{font-size:12.5px;color:var(--sub);margin-top:5px;}
+
+/* ---------- 卡片区块 ---------- */
+section{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:23px 27px;margin-top:16px;}
+section h2{font-size:18.5px;margin-bottom:14px;display:flex;align-items:center;gap:9px;font-weight:700;}
+section h2 .dot{width:9px;height:9px;border-radius:50%;background:var(--brand);display:inline-block;flex:none;}
+/* 一句话结论：整页最该先读的一行，字号略大、颜色最深，关键数字用品牌色 */
+.lead{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.78;}
+.lead b{color:var(--brand);}
+/* 本周概要 · 编号要点（summary_items） */
+.lead-list{margin:0;padding-left:0;list-style:none;counter-reset:lead;}
+.lead+.lead-list{margin-top:12px;}
+.lead-list li{
+  position:relative;counter-increment:lead;padding-left:30px;
+  font-size:14.5px;line-height:1.75;color:var(--sub);
+}
+.lead-list li+li{margin-top:9px;}
+.lead-list li:before{
+  content:counter(lead);position:absolute;left:0;top:2px;
+  width:21px;height:21px;border-radius:50%;background:var(--brand-soft);color:var(--brand);
+  font-size:12px;font-weight:800;text-align:center;line-height:21px;
+}
+.lead-list b{color:var(--ink);}
+
+/* ---------- 目标回顾 ---------- */
+.rate{
+  display:flex;align-items:center;gap:14px;margin-bottom:16px;
+  background:var(--slate-soft);border:1px solid var(--line);border-radius:12px;padding:13px 16px;
+}
+.rate .pct{font-size:24px;font-weight:800;color:var(--brand);}
+.rate .bar{flex:1;height:9px;border-radius:99px;background:#e2e8f0;overflow:hidden;}
+.rate .bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#2563eb,#0f9d6b);}
+.rate .txt{font-size:13px;color:var(--sub);white-space:nowrap;}
+
+.goal-tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;}
+.goal-tbl th{
+  text-align:left;font-size:12.5px;color:var(--sub);font-weight:600;
+  padding:0 12px 9px;border-bottom:1px solid var(--line);white-space:nowrap;
+}
+.goal-tbl td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;}
+.goal-tbl tr:last-child td{border-bottom:none;}
+.goal-tbl td.g{font-weight:600;}
+.goal-tbl td.n{font-size:13px;color:var(--sub);}
+.st{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;
+    padding:3px 10px;border-radius:999px;white-space:nowrap;}
+.st.done{background:var(--green-soft);color:#0b7a52;}
+.st.partial{background:var(--amber-soft);color:#b45309;}
+.st.missed{background:var(--red-soft);color:#b42318;}
+.st.pending{background:var(--slate-soft);color:#475569;}
+.st.shifted{background:var(--brand-soft);color:#1d4ed8;}   /* 顺延：中性蓝，非负向 */
+
+/* ---------- 工作条目（本周做了什么）：序号徽标 + 标题一行 + 正文一行 ---------- */
+.work-item{display:flex;gap:13px;padding:16px 0;border-bottom:1px solid var(--line);}
+.work-item:first-child{padding-top:8px;}
+.work-item:last-child{border-bottom:none;padding-bottom:2px;}
+.work-item .no{
+  flex:none;width:24px;height:24px;border-radius:8px;margin-top:1px;
+  background:var(--brand-soft);color:var(--brand);
+  font-size:12.5px;font-weight:800;line-height:24px;text-align:center;
+  font-variant-numeric:tabular-nums;
+}
+.work-item .body{flex:1;min-width:0;}
+.work-item .k{font-size:15px;font-weight:700;color:var(--ink);line-height:1.5;}
+.work-item .v{margin-top:6px;font-size:14px;line-height:1.78;color:var(--body);}
+.work-item .v b{color:var(--ink);font-weight:600;}
+
+/* ---------- 按项目分簇（2026-09-18 Tesse：「如果只有 2 个项目，你为啥不按项目写做了什么的明细？」）
+   页面上三处「一条一条的东西」——本周做了什么 / 当前状态 / 下周目标——全部按项目分簇，
+   组头统一是「项目名 + 条数」，序号跨组连续（方便口头引用「第 5 条」）。
+   数据里带 proj 时分组；全部不带时整体退化为原来的平铺版式（向后兼容旧周报）。 ---------- */
+.proj-blk + .proj-blk{margin-top:24px;}
+.proj-h{
+  display:flex;align-items:baseline;gap:9px;
+  padding-bottom:9px;border-bottom:2px solid var(--brand-soft);
+}
+.proj-h .pn{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:.2px;}
+.proj-h .pn:before{
+  content:"";display:inline-block;width:7px;height:7px;border-radius:2px;
+  background:var(--brand);margin-right:9px;vertical-align:2px;
+}
+.proj-h .pc{margin-left:auto;font-size:12.5px;font-weight:800;color:var(--sub);
+  font-variant-numeric:tabular-nums;}
+.proj-h + table{margin-top:13px;}
+.done-grp .work-item:first-child{padding-top:14px;}
+
+/* ---------- 时间线 ---------- */
+.timeline{position:relative;padding-left:24px;}
+.timeline:before{content:"";position:absolute;left:8px;top:7px;bottom:7px;width:2px;background:var(--brand-soft);}
+.tl-item{position:relative;padding:0 0 19px 14px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item:before{content:"";position:absolute;left:-21px;top:5px;width:13px;height:13px;border-radius:50%;
+  background:var(--brand);border:3px solid #fff;box-shadow:0 0 0 2px var(--brand-soft);}
+.tl-item .date{font-size:12.5px;color:var(--brand);font-weight:700;}
+.tl-item .tt{font-size:15px;font-weight:600;margin:2px 0 3px;}
+.tl-item .dd{font-size:13.5px;color:var(--sub);}
+
+/* ---------- 状态表 ----------
+   不用满格边框（那是 Excel 的样子，和整页的轻量分隔线不搭）：只留行分隔线，
+   状态列右对齐 —— 领导可以只扫右列，一行看一个模块的进度。 */
+.state-tbl{width:100%;border-collapse:collapse;font-size:14px;}
+.state-tbl th{
+  text-align:left;font-size:12.5px;color:var(--sub);font-weight:600;
+  padding:0 12px 9px;border-bottom:1px solid var(--line);
+}
+.state-tbl td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:middle;}
+.state-tbl tr:last-child td{border-bottom:none;}
+.state-tbl td:first-child{font-weight:600;color:var(--ink);}
+.state-tbl td:last-child{text-align:right;white-space:nowrap;}
+
+/* ---------- 下周目标（结构化表格） ---------- */
+.sub-h{font-size:13.5px;font-weight:800;color:var(--ink);margin:22px 0 10px;
+  padding-left:9px;border-left:3px solid var(--brand);}
+.plan-tbl{width:100%;border-collapse:collapse;font-size:14px;}
+.plan-tbl th{
+  text-align:left;font-size:12.5px;color:var(--sub);font-weight:600;
+  padding:0 12px 9px;border-bottom:1px solid var(--line);
+}
+.plan-tbl th:first-child{text-align:center;}
+.plan-tbl td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:middle;}
+.plan-tbl tr:last-child td{border-bottom:none;}
+.plan-tbl td.i{width:46px;text-align:center;font-weight:800;color:var(--brand);
+  font-variant-numeric:tabular-nums;}
+.plan-tbl td.g{font-weight:600;}
+.plan-tbl td.tg{width:92px;white-space:nowrap;}
+.plan-tbl b{color:var(--brand);}
+.pill{display:inline-block;font-size:12px;padding:2px 10px;border-radius:999px;font-weight:600;white-space:nowrap;}
+.pill.done{background:var(--green-soft);color:#0b7a52;}   /* 已完成 */
+.pill.run{background:var(--brand-soft);color:#1d4ed8;}   /* 进行中 */
+.pill.wait{background:var(--amber-soft);color:#b45309;}  /* 待评估 / 待验证 */
+.pill.plan{background:var(--slate-soft);color:#475569;}  /* 未开始 */
+
+/* ---------- 产品概览（产品是什么） ---------- */
+.prod-intro{
+  font-size:14.5px;background:var(--brand-soft);border-left:4px solid var(--brand);
+  padding:12px 16px;border-radius:0 9px 9px 0;margin-bottom:15px;
+}
+.prod-intro b{color:var(--brand);}
+.prod-tbl,.ver-tbl{width:100%;border-collapse:collapse;font-size:14px;}
+.prod-tbl th,.prod-tbl td,.ver-tbl th,.ver-tbl td{
+  border:1px solid var(--line);padding:10px 13px;text-align:left;vertical-align:top;
+}
+.prod-tbl th,.ver-tbl th{background:#f3f6fb;font-weight:600;font-size:13px;}
+.prod-tbl td.n{font-weight:700;color:var(--brand);white-space:nowrap;width:126px;}
+.ver-tbl td.v{font-weight:800;color:var(--brand);white-space:nowrap;width:58px;}
+
+/* ---------- 历史归档 ---------- */
+.history{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;}
+.history .hd{font-size:13.5px;font-weight:700;color:var(--sub);margin-bottom:11px;}
+.chips{display:flex;flex-wrap:wrap;gap:9px;}
+.chip{border:1px solid var(--line);background:#fcfdff;border-radius:10px;padding:8px 13px;
+  font-size:13px;color:var(--sub);cursor:pointer;transition:.15s;text-align:left;}
+.chip:hover{border-color:#c8d5ea;background:#f6f9ff;}
+.chip.active{border-color:var(--brand);background:var(--brand-soft);color:var(--brand);font-weight:700;}
+.chip .w{font-weight:700;color:var(--ink);display:block;font-size:13.5px;}
+.chip.active .w{color:var(--brand);}
+.chip .r{font-size:11.5px;}
+
+/* ---------- 背景与明细（默认收起，需要时才展开） ----------
+   设计意图：领导只读「结论链路」（概览 → 逐日 → 明细 → 目标 → 状态），
+   背景知识类内容（产品是什么、版本演进）不该占用主线的阅读时间。 */
+.fold{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-top:16px;}
+.fold>summary{
+  cursor:pointer;list-style:none;padding:15px 27px;border-radius:16px;
+  font-size:14.5px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;gap:9px;
+}
+.fold>summary::-webkit-details-marker{display:none;}
+.fold>summary::after{
+  content:"展开";margin-left:auto;font-size:12.5px;font-weight:700;
+  color:var(--brand);background:var(--brand-soft);border-radius:99px;padding:3px 12px;
+}
+.fold[open]>summary::after{content:"收起";}
+.fold[open]>summary{border-bottom:1px solid var(--line);border-radius:16px 16px 0 0;}
+.fold>.fold-body{padding:0 27px 22px;}
+.fold .fold-body section{
+  background:transparent;border:0;border-radius:0;margin:0;
+  padding:19px 0 0;border-top:1px dashed var(--line);
+}
+.fold .fold-body section:first-child{border-top:0;}
+.fold .fold-body section h2{font-size:15.5px;margin-bottom:11px;}
+
+/* ---------- 空态 ---------- */
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:16px;
+  padding:56px 24px;text-align:center;color:var(--sub);}
+.empty .ic{font-size:34px;margin-bottom:10px;}
+.empty .t{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+
+footer.foot{text-align:center;color:var(--sub);font-size:12.5px;margin-top:24px;line-height:1.9;}
+
+@media(max-width:720px){
+  .kpi-row{grid-template-columns:repeat(2,1fr);}
+  .vp{grid-template-columns:1fr;}
+  .hero{padding:24px 22px;} .hero h1{font-size:22px;}
+  section{padding:19px 18px;}
+  .work-item{gap:10px;padding:14px 0;}
+  .work-item .no{width:21px;height:21px;line-height:21px;font-size:11.5px;border-radius:7px;}
+  .goal-tbl th:nth-child(3),.goal-tbl td:nth-child(3){display:none;}
+  .toolbar .hint{margin-left:0;width:100%;}
+}
+@media print{
+  body{background:#fff;padding:0;}
+  .toolbar,.history{display:none;}
+  /* 打印 / 导出 PDF 时强制展开折叠区，否则背景与明细会整段丢掉 */
+  .fold{border-color:#ddd;}
+  .fold>summary{display:none;}
+  .fold>.fold-body{display:block !important;padding:0;}
+  .fold .fold-body section{border-top:0;padding-top:14px;}
+  section,.hero,.kpi{border-color:#ddd;box-shadow:none;break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="toolbar"><div class="grp"><a class="btn" href="../index.html">← 周报归档</a></div><div class="hint">单周页面 · 可直接分享此链接</div></div>
+<div id="report"></div>
+</div>
+<script>
+const BUILD_AT = "2026-10-23 17:11";
+
+const RESULT_META = {
+  done:    {label:'已完成',   mark:'\u2713', cls:'done'},
+  partial: {label:'部分完成', mark:'\u25d0', cls:'partial'},
+  missed:  {label:'未完成',   mark:'\u2715', cls:'missed'},
+  pending: {label:'未开始',   mark:'\u25cb', cls:'pending'},
+  shifted: {label:'\u987a\u5ef6', mark:'\u2192', cls:'shifted'}
+};
+
+/* 唯一转义入口：全量转义之后，只放行 <b> / </b> 两个标签。
+   踩过的坑：这里原本并存两套函数 —— esc()（全转义）与 rich()（放行 <b>）。
+   只要某一列漏用 rich()，作者写的 <b> 就会在页面上原样显示成字面量标签。
+   同类 bug 已复发三次（done / goals_review.note / 概要与目标列）。
+   现在合并成一个：任何字段写 <b> 都会渲染成加粗，其余 HTML 一律失效。 */
+function esc(s){
+  return String(s==null?'':s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;')
+    .replace(/&lt;b&gt;/g, '<b>').replace(/&lt;\/b&gt;/g, '</b>');
+}
+
+/* rich() 保留为别名，历史调用点无需改动 */
+function rich(s){ return esc(s); }
+
+function fmtDate(d){
+  if(!d) return '';
+  const p = String(d).split('-');
+  return p.length===3 ? (p[0]+'-'+p[1]+'-'+p[2]) : String(d);
+}
+
+function isoWeekOf(dateObj){
+  const t = new Date(Date.UTC(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate()));
+  const dayNum = t.getUTCDay() || 7;
+  t.setUTCDate(t.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+  const wk = Math.ceil((((t - yearStart) / 86400000) + 1) / 7);
+  return t.getUTCFullYear() + '-W' + String(wk).padStart(2, '0');
+}
+
+const CN_NUM = ['\u4e00','\u4e8c','\u4e09','\u56db','\u4e94','\u516d','\u4e03','\u516b','\u4e5d','\u5341'];
+
+function renderReport(w){
+  /* 章节序号：先占位、最后按【最终渲染顺序】统一编号。
+     踩过的坑：早期 sec() 是「构造即自增」，于是编号跟着代码里 sec() 的调用先后走。
+     后来把章节按阅读顺序重排拼接（概要→逐日→明细→目标→状态→折叠背景），
+     编号就对不上了（概要=一、逐日=六）。现在改成占位符 + 末尾统一编号，
+     无论怎么调换拼接顺序都不会错号。 */
+  const _slots = [];
+  function sec(title, inner){
+    const i = _slots.push(title) - 1;
+    return '<section><h2><span class="dot"></span>\u0001SEC' + i + '\u0001' + title + '</h2>' + inner + '</section>';
+  }
+  function finalize(html){
+    let n = 0;
+    return html.replace(/\u0001SEC\d+\u0001/g, function(){
+      n++;
+      return (CN_NUM[n - 1] || ('\u7b2c' + n)) + '\u3001';
+    });
+  }
+
+  /* ============ 按项目分簇的公共件 ============
+     2026-09-18 Tesse：「如果只有 2 个项目，你为啥不按项目写做了什么的明细？」
+     规格：三处逐条内容（本周做了什么 / 当前状态 / 下周目标）统一按 proj 字段分簇，
+     组头 = 「项目名 + 条数」，序号跨组连续。数据里一个 proj 都没有时整体退化为旧版平铺。 */
+  function projHead(name, n, unit){
+    return '<div class="proj-h"><span class="pn">' + esc(name) + '</span>'
+      + '<span class="pc">' + n + ' ' + esc(unit) + '</span></div>';
+  }
+  /* 分簇：保持「首次出现顺序」；同名项目自动并入同一簇（中间夹着别的项目也不会拆成两块）。
+     返回 [{name, items:[{d, i}]}]，i = 原始下标，供跨组连续编号使用。 */
+  function groupByProj(rows){
+    const order = [], map = {};
+    (rows || []).forEach(function(d, i){
+      const p = (d && d.proj) ? String(d.proj) : '';
+      if (!Object.prototype.hasOwnProperty.call(map, p)) { map[p] = []; order.push(p); }
+      map[p].push({ d: d, i: i });
+    });
+    return order.map(function(p){ return { name: p, items: map[p] }; });
+  }
+  /* 统一入口：有 proj → 分簇（可选 wrap 负责把一簇的条目包进表格）；
+     没有 proj → 直接用 flatHtml（旧版平铺），保证历史周报不变样。 */
+  function cluster(rows, unit, one, flatHtml, wrap){
+    const grouped = (rows || []).some(function(d){ return d && d.proj; });
+    if (!grouped) return flatHtml;
+    return groupByProj(rows).map(function(g){
+      const body = g.items.map(function(r){ return one(r.d, r.i); }).join('');
+      return '<div class="proj-blk">'
+        + (g.name ? projHead(g.name, g.items.length, unit) : '')
+        + (wrap ? wrap(body) : body)
+        + '</div>';
+    }).join('');
+  }
+
+  const g = w.goals_review || [];
+  const shiftedN = g.filter(function(x){ return x.result === 'shifted'; }).length;
+  const doneN    = g.filter(function(x){ return x.result === 'done'; }).length;
+  const scored = g.reduce(function(a, x){
+    if(x.result === 'done') return a + 1;
+    if(x.result === 'partial') return a + 0.5;
+    return a;
+  }, 0);
+  /* 「顺延」不计入分母：该项没推进的原因是本周工作重心转移，不是没做成 */
+  const effN = g.length - shiftedN;
+  const rate = effN ? Math.round(scored / effN * 100) : 0;
+
+  const kpis = (w.kpis || []).map(function(k){
+    return '<div class="kpi">'
+      + (k.proj ? '<div class="kp">' + esc(k.proj) + '</div>' : '')
+      + '<div class="num">' + esc(k.value) +
+      (k.unit ? '<small>' + esc(k.unit) + '</small>' : '') +
+      '</div><div class="lab">' + esc(k.label) + '</div></div>';
+  }).join('');
+
+  const goalsRows = g.map(function(x){
+    const m = RESULT_META[x.result] || RESULT_META.pending;
+    return '<tr><td class="g">' + rich(x.goal) + '</td>' +
+      '<td><span class="st ' + m.cls + '">' + m.mark + ' ' + m.label + '</span></td>' +
+      '<td class="n">' + rich(x.note || '') + '</td></tr>';
+  }).join('');
+
+  /* —— 以下按最终渲染顺序依次调用 sec()，保证章节编号连续且不缺号 —— */
+
+  /* 本周概要：summary = 总起句（可选）；summary_items = 编号要点（可选，按 1/2/3… 渲染）。
+     两者都可含 <b>；只写 summary 时退化为原来的一句话段落，向后兼容。 */
+  const sumLead = w.summary ? '<p class="lead">' + rich(w.summary) + '</p>' : '';
+  const sumItems = (w.summary_items || []).filter(function(x){ return x; });
+  const sumList = sumItems.length
+    ? '<ol class="lead-list">' + sumItems.map(function(x){
+        return '<li>' + rich(x) + '</li>';
+      }).join('') + '</ol>'
+    : '';
+  const summarySec = (sumLead || sumList)
+    ? sec('\u672c\u5468\u6982\u8981', sumLead + sumList)
+    : '';
+
+  const goalsSec = g.length
+    ? sec('\u4e0a\u5468\u76ee\u6807 &amp; \u672c\u5468\u5b8c\u6210\u60c5\u51b5',
+        '<div class="rate"><div class="pct">' + rate + '%</div>' +
+        '<div class="bar"><i style="width:' + rate + '%"></i></div>' +
+        '<div class="txt">\u4e0a\u5468\u5171 ' + g.length + ' \u9879\u76ee\u6807\uff0c\u5b8c\u6210 ' +
+          doneN + ' \u9879' + (shiftedN ? ('\uff0c\u987a\u5ef6 ' + shiftedN + ' \u9879') : '') + '</div></div>' +
+        '<table class="goal-tbl"><thead><tr><th>\u4e0a\u5468\u76ee\u6807</th><th>\u5b8c\u6210\u72b6\u6001</th><th>\u8bf4\u660e</th></tr></thead>' +
+        '<tbody>' + goalsRows + '</tbody></table>')
+    : '';
+
+  /* 「产品是什么 / 关键节点回顾」两节已下线（2026-09-18 Tesse：「六和七没有存在的意义，干掉」）。
+     product / versions 两个字段仍保留在 JSON 里留档，页面不再渲染 —— 不要再加回来。 */
+
+  /* 「本周做了什么」：**按项目分簇**（2026-09-18 Tesse：「如果只有 2 个项目，你为啥不按项目写做了什么的明细？」）。
+     - done[].proj 存在时 → 按项目分组，组头显示「项目名 + N 项」；序号跨组连续（方便口头引用「第 5 条」）。
+     - 全部条目都没有 proj 时 → 退化为原来的平铺列表（向后兼容旧周报）。
+     - k 里允许继续手写「1. 」前缀（老写法），会自动提到左侧徽标上；新写法直接写标题即可。 */
+  const doneRaw = (w.done || []);
+  const doneOne = function(d, idx){
+    const raw = String((d && d.k) || '');
+    const m = /^\s*(\d+)\s*[.、]\s*(.*)$/.exec(raw);
+    const no = m ? m[1] : String(idx + 1);
+    const title = m ? m[2] : raw;
+    return '<div class="work-item">'
+      + (no ? '<div class="no">' + esc(no) + '</div>' : '')
+      + '<div class="body">'
+      + (title ? '<div class="k">' + rich(title) + '</div>' : '')
+      + '<div class="v">' + rich(d && d.v) + '</div>'
+      + '</div></div>';
+  };
+  const doneItems = cluster(doneRaw, '\u9879', doneOne, doneRaw.map(doneOne).join(''));
+  const doneSec = doneItems ? sec('\u672c\u5468\u505a\u4e86\u4ec0\u4e48', doneItems) : '';
+
+  /* 「本周逐日进展」已下线（2026-09-18 Tesse：「你的第二条…和第三条不是一个东西吗？你写那么多遍」）。
+     它与「本周做了什么」是同一批内容的两个视角，重复率约七成 —— 领导只需要「做了什么」，
+     不需要「哪一天做的」。daily 字段仍留在 JSON 里留档（也仍在 --new 时生成空壳），页面不再渲染。
+     ⚠️ 要恢复的话：把 dailySec 加回下面的拼接行，并在 render_check.js 的 ORDER 里放回「本周逐日进展」。 */
+
+  const miles = (w.milestones || []).map(function(m){
+    return '<div class="tl-item"><div class="date">' + esc(m.date) + '</div>' +
+      '<div class="tt">' + esc(m.title) + '</div><div class="dd">' + esc(m.desc) + '</div></div>';
+  }).join('');
+  const mileSec = miles ? sec('\u5173\u952e\u65f6\u95f4\u8282\u70b9', '<div class="timeline">' + miles + '</div>') : '';
+
+  /* 当前状态 · 模块表：也按项目分簇（原来两个项目的模块混在一张表里，读者得自己认前缀） */
+  const modRaw = (w.modules || []);
+  const modOne = function(m){
+    const tone = (m.tone === 'wait' || m.tone === 'done' || m.tone === 'plan') ? m.tone : 'run';
+    return '<tr><td>' + esc(m.name) + '</td><td><span class="pill ' + tone + '">' + esc(m.state) + '</span></td></tr>';
+  };
+  const modItems = cluster(modRaw, '\u4e2a\u6a21\u5757', modOne,
+    modRaw.length
+      ? '<table class="state-tbl"><thead><tr><th>\u6a21\u5757</th><th>\u5f53\u524d\u72b6\u6001</th></tr></thead><tbody>'
+        + modRaw.map(modOne).join('') + '</tbody></table>'
+      : '',
+    function(body){ return '<table class="state-tbl"><tbody>' + body + '</tbody></table>'; });
+
+  /* 下周目标：结构化表格（序号 / 目标 / 类别），兼容纯字符串数组；同样按项目分簇 */
+  const goalsRaw = w.next_goals || [];
+  const hasTag = goalsRaw.some(function(g){ return g && typeof g === 'object' && g.tag; });
+  const goalOne = function(g, i){
+    const isObj = g && typeof g === 'object';
+    const txt = isObj ? (g.t || '') : String(g || '');
+    const tag = isObj ? (g.tag || '') : '';
+    return '<tr><td class="i">' + (i + 1) + '</td>' +
+      '<td class="g">' + rich(txt) + '</td>' +
+      (hasTag ? '<td class="tg">' + (tag ? '<span class="pill plan">' + esc(tag) + '</span>' : '') + '</td>' : '') +
+    '</tr>';
+  };
+  const nextItems = cluster(goalsRaw, '\u9879', goalOne,
+    goalsRaw.length
+      ? '<table class="plan-tbl"><thead><tr><th>\u5e8f\u53f7</th><th>\u76ee\u6807</th>'
+        + (hasTag ? '<th>\u7c7b\u522b</th>' : '') + '</tr></thead><tbody>'
+        + goalsRaw.map(goalOne).join('') + '</tbody></table>'
+      : '',
+    function(body){ return '<table class="plan-tbl"><tbody>' + body + '</tbody></table>'; });
+
+  /* 「当前状态」与「下周目标」各自独立成节 —— 一个回答「现在到哪了」，一个回答「下一步做什么」，
+     以前挤在一节里（「当前状态 & 下周目标」），下周目标被压在模块表后面，最该看的东西反而最不显眼。 */
+  const stateSec = modItems ? sec('\u5f53\u524d\u72b6\u6001', modItems) : '';
+  const nextSec  = nextItems ? sec('\u4e0b\u5468\u76ee\u6807', nextItems) : '';
+
+  /* 抬头标题：优先用 JSON 里的 title；没写就按「{汇报人} {ISO周次}周工作汇报」自动拼，
+     保证历史周报翻起来一眼知道是哪一周（2026-09-18 Tesse：「邢茹娉 38周工作汇报」）。
+     周次从 w.week（如 2026-W38）里取，不依赖 title 手填。 */
+  const weekNum = (function(){
+    const m = /-W0*(\d+)$/.exec(String(w.week || ''));
+    return m ? m[1] : '';
+  })();
+  const heroTitle = w.title
+    || ((w.subject || '') ? ((w.subject || '') + (weekNum ? ' ' + weekNum + '\u5468\u5de5\u4f5c\u6c47\u62a5' : '\u5468\u5de5\u4f5c\u6c47\u62a5')) : (w.project || ''));
+
+  /* 阅读顺序（按「领导 3 分钟看完」设计，别再插到前面去）：
+       结论 → 产出 → 承诺兑现 → 现状 → 下一步
+     注意：这里只决定拼接顺序，章节号由 finalize() 末尾统一生成。 */
+  return finalize('' +
+  '<header class="hero">' +
+    /* 抬头只留三层：周期（周次 + 起止）→ 标题 → 汇报人。
+       原来 tag 写的是 config 的「每周工作汇报」，和 h1 是同一句话，白占一行。 */
+    '<div class="tag">' + esc(w.week) + ' \u00b7 ' + fmtDate(w.start) + ' \uff5e ' + fmtDate(w.end) + '</div>' +
+    '<h1>' + esc(heroTitle) + '</h1>' +
+    '<div class="meta">\u6c47\u62a5\u4eba\uff1a' + esc(w.owner || '') + '</div>' +
+    '<div class="badges">' +
+      (w.focus
+        ? '<span>\u672c\u5468\u91cd\u70b9 \u00b7 ' + esc(w.focus) + '</span>'
+        : (w.project ? '<span>' + esc(w.project) + '</span>' : '')) +
+      /* 「已发布」对读周报的人没有信息量（能打开就说明已发布），只在草稿时提示待审核 */
+      (w.state === 'draft' ? '<span>\u8349\u7a3f \u00b7 \u5f85\u5ba1\u6838</span>' : '') +
+    '</div>' +
+  '</header>' +
+  (kpis ? '<div class="kpi-row">' + kpis + '</div>' : '') +
+  summarySec + doneSec + goalsSec + stateSec + nextSec + mileSec +
+  '<footer class="foot">' + esc(w.footer_note || '') +
+    (w.footer_note ? ' \u00b7 ' : '') + '\u6570\u636e\u622a\u81f3 ' + fmtDate(w.end) +
+    (typeof BUILD_AT === 'undefined' ? '' : ' \u00b7 \u9875\u9762\u6784\u5efa\u4e8e ' + BUILD_AT) +
+    '</footer>');
+}
+
+const WEEK = {"week": "2026-W43", "start": "2026-10-19", "end": "2026-10-23", "source_project": "baogong", "subject": "邢茹娉", "project": "保供项目", "focus": "保供咖啡吧需求核对与优先级调整 · 戈尔德仓储调度调研 · 小客核心流程收口", "owner": "邢茹娉（产品经理）", "tagline": "每周工作汇报", "title": "邢茹娉 43周工作汇报", "state": "published", "kpis": [{"value": "1", "unit": "份", "label": "咖啡吧需求核对确认表（逐项对照三期合同）", "proj": "保供"}, {"value": "54", "unit": "台", "label": "现场机器人（48 台潜伏机 + 6 台侧叉机）", "proj": "戈尔德"}, {"value": "4", "unit": "条", "label": "小客核心流程收口", "proj": "小客"}, {"value": "3", "unit": "个", "label": "小客交付节点（10-27 / 10-30）", "proj": "小客"}], "summary": "本周出差 3 天：保供完成咖啡吧需求的乙方反馈与甲方核对确认表，双方沟通后确认咖啡吧暂缓、先推进原始合同需求；戈尔德仓库现场调研并产出机器人调度产品规划方案；小客完成四条核心流程开发与 MVP 范围收敛，进入功能收口与联调。", "summary_items": ["【保供】完成咖啡吧需求乙方反馈与核对确认表（逐项对照三期合同与现有功能，标注对应条款与依据）", "【保供】完成开发优先级调整：咖啡吧暂缓，先推进原始合同需求开发", "【戈尔德】完成四层仓库现场调研（48 台潜伏机 / 6 台侧叉机 / 三层货架）与机器人调度产品规划方案", "【戈尔德】完成多版汇报材料（含现场素材版、总经理汇报版与逐页口播稿）", "【小客】完成用户管理、知识库、客服接待、租户与用量四条核心流程开发", "【小客】完成 MVP 范围收敛（智能助理市场与平台助理入口暂关，保留续开）", "【小客】完成工程与体验收口（回归测试、操作回执、权限隔离、QA 环境与 CI/CD 配置）", "【小客】定下三个交付节点：10-27 代码合并、10-28~29 联调修复、10-30 内测上线 MVP"], "goals_review": [{"goal": "部署小客测试环境并出可回滚的发布版本（服务器、域名、独立数据库与密钥就绪）", "result": "partial", "proj": "小客", "note": "QA 环境与 CI/CD 已配；内测环境定 10-30。"}, {"goal": "打通「平台发布 → 租户开通 → 安装配置 → 真实执行 → 用量留痕」的市场闭环", "result": "shifted", "proj": "小客", "note": "MVP 收敛，市场入口暂关待续开。"}, {"goal": "让「用户数据治理助理」真实跑通：150 位消费者样本做映射、清洗、异常隔离与人工确认入库", "result": "partial", "proj": "小客", "note": "用户导入与字段识别已在核心流程内完成。"}, {"goal": "把咖啡吧需求文档、清单与人天时明细归位推资产，并跟进甲方工时报价回复", "result": "partial", "proj": "保供", "note": "甲方已回复并形成暂缓结论；资产归位未执行。"}], "done": [{"proj": "保供", "k": "完成咖啡吧需求核对确认表", "v": "逐项对照三期合同与保供系统现有功能，标注对应条款与依据，供甲方在「乙方说明 / 反馈」列填写增量说明。"}, {"proj": "保供", "k": "完成开发优先级调整", "v": "甲方不认可上周报出的 21 人天时方案（认为仅 3 个新增人天时）；双方沟通后确认咖啡吧暂缓，先推进原始合同需求开发。"}, {"proj": "戈尔德", "k": "完成四层仓库现场调研", "v": "现场核实单层约 2 万平方米、48 台潜伏机 + 6 台侧叉机、三层货架；梳理共用地面二维码导航、区域互斥与受阻表现。"}, {"proj": "戈尔德", "k": "产出机器人调度产品规划方案", "v": "从现场出发梳理「仓库方案 → 地图 / 资源 / 作业流程 → 调度系统组织机器人执行」；含主流方案产品组成对照与 RCS 功能模块框架。"}, {"proj": "戈尔德", "k": "完成多版汇报材料", "v": "含现场素材版 HTML、总经理汇报版、七页图示版与逐页口播稿；现场素材逐张审阅并留选用清单。"}, {"proj": "小客", "k": "完成四条核心流程开发", "v": "用户管理、知识库、客服接待、租户与用量四条核心流程；含资料上传与字段识别、知识分段与检索测试、人工接管流程、平台套餐与 Token 用量账单。"}, {"proj": "小客", "k": "完成 MVP 范围收敛与工程体验收口", "v": "智能助理市场与平台助理入口暂关（保留续开）；补回归测试、操作回执与权限隔离校验，已加入 QA 环境与 CI/CD 配置。"}, {"proj": "小客", "k": "与开发对齐交付节奏", "v": "先代码合并与核心逻辑收口交付测试，再集中测试修复，最后上线内测环境 MVP。"}], "daily": [{"date": "10-19", "wd": "周一", "theme": "小客：工作台 / 用户 / 营销固定助理栏，导航合并", "brief": "用户与营销管理页固定右侧助理对话栏，主动推送归入营销管理、账号管理归入设置；客服对话审批支持 AI 生成相似问法与参考回答；工作台也能围绕经营数据对话。", "changes": []}, {"date": "10-20", "wd": "周二", "theme": "小客：问答审核改为平台内置生成", "brief": "问答生成不再要求租户自行配助理，改由服务端统一模型配置一键生成；权限、租户知识隔离、个人信息脱敏与人工审批流程保留。", "changes": []}, {"date": "10-21", "wd": "周三", "theme": "出差 · 戈尔德：四层仓库现场调研", "brief": "进现场看设备与作业流程：单层约 2 万平方米、三层货架、48 台潜伏机与 6 台侧叉机；共用地面二维码导航，侧叉机占用区域潜伏机不进入。", "changes": []}, {"date": "10-22", "wd": "周四", "theme": "出差 · 戈尔德：现场素材整理与研究汇报", "brief": "逐张审阅现场 19 张图片与 23 段视频并留选用清单；产出调研报告、总经理汇报版、七页图示版与口播稿；对照主流厂商的 RCS 产品组成与功能模块。", "changes": []}, {"date": "10-23", "wd": "周五", "theme": "出差 · 戈尔德：调度产品规划收口 ｜ 保供：咖啡吧需求核对", "brief": "调度产品规划出含现场素材版与实施配置框架，明确「货架位置、通道与设备方案按客户场景设计，再配置地图、路线与工作流」；保供侧出咖啡吧需求核对确认表，双方沟通后确认咖啡吧暂缓、先推原始合同需求。", "changes": []}], "milestones": [], "versions": [], "product": {"intro": "", "modules": []}, "modules": [{"proj": "保供", "name": "咖啡吧需求核对", "state": "确认表已出", "tone": "done"}, {"proj": "保供", "name": "咖啡吧开发", "state": "暂缓推进", "tone": "wait"}, {"proj": "保供", "name": "原始合同需求开发", "state": "按调整后优先级推进", "tone": "run"}, {"proj": "戈尔德", "name": "现场调研", "state": "已完成", "tone": "done"}, {"proj": "戈尔德", "name": "调度产品规划方案", "state": "已出，待产品化包装", "tone": "run"}, {"proj": "小客", "name": "用户管理", "state": "核心流程已收口", "tone": "done"}, {"proj": "小客", "name": "知识库", "state": "核心流程已收口", "tone": "done"}, {"proj": "小客", "name": "客服接待", "state": "核心逻辑已收口", "tone": "done"}, {"proj": "小客", "name": "租户与用量", "state": "已完善", "tone": "done"}, {"proj": "小客", "name": "智能助理市场", "state": "暂关，保留续开", "tone": "wait"}, {"proj": "小客", "name": "内测环境 MVP", "state": "10-30 上线", "tone": "run"}], "next_goals": [{"proj": "小客", "t": "完成代码合并与核心逻辑收口并交付测试"}, {"proj": "小客", "t": "完成集中测试、修复和上线准备，处理数据写入、租户隔离、知识生效与渠道发送等阻断问题"}, {"proj": "小客", "t": "上线内测环境 MVP 并开放内测使用，明确反馈入口与问题跟进"}, {"proj": "戈尔德", "t": "完成调度产品规划方案在业务层面的产品化包装与处理"}], "footer_note": "本报告覆盖 10-19（周一）～ 10-23（周五）共 5 个工作日（其中 10-21 ~ 10-23 出差戈尔德仓库现场）。下周为 10-26（周一）～ 10-30（周五）共 5 个工作日。"};
+document.getElementById('report').innerHTML = renderReport(WEEK);
+
+</script>
+</body>
+</html>
