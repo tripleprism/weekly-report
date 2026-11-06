@@ -196,6 +196,8 @@ section h2 .dot{width:9px;height:9px;border-radius:50%;background:var(--brand);d
   font-variant-numeric:tabular-nums;}
 .proj-h + table{margin-top:13px;}
 .done-grp .work-item:first-child{padding-top:14px;}
+.subgrp{margin:18px 0 4px;font-size:12px;font-weight:600;letter-spacing:.04em;color:#6b7280;padding-left:2px}
+.subgrp:first-child{margin-top:10px}
 
 /* ---------- 时间线 ---------- */
 .timeline{position:relative;padding-left:24px;}
@@ -329,7 +331,7 @@ footer.foot{text-align:center;color:var(--sub);font-size:12.5px;margin-top:24px;
 <div id="report"></div>
 </div>
 <script>
-const BUILD_AT = "2026-11-06 14:43";
+const BUILD_AT = "2026-11-06 14:45";
 
 const RESULT_META = {
   done:    {label:'已完成',   mark:'\u2713', cls:'done'},
@@ -414,8 +416,26 @@ function renderReport(w){
   function cluster(rows, unit, one, flatHtml, wrap){
     const grouped = (rows || []).some(function(d){ return d && d.proj; });
     if (!grouped) return flatHtml;
+    const hasSub = (rows || []).some(function(d){ return d && d.grp; });
     return groupByProj(rows).map(function(g){
-      const body = g.items.map(function(r){ return one(r.d, r.i); }).join('');
+      let body = '';
+      if (hasSub) {
+        /* 二级分组：done[].grp（如 产品 / 项目 / 文档 / 开发 / 方案） */
+        let cur = null, buf = [];
+        const flush = function(){
+          if (!buf.length) return;
+          body += (cur ? '<div class="subgrp">' + esc(cur) + '</div>' : '') + buf.join('');
+          buf = [];
+        };
+        g.items.forEach(function(r){
+          const grp = (r.d && r.d.grp) || '';
+          if (grp !== cur) { flush(); cur = grp; }
+          buf.push(one(r.d, r.i));
+        });
+        flush();
+      } else {
+        body = g.items.map(function(r){ return one(r.d, r.i); }).join('');
+      }
       return '<div class="proj-blk">'
         + (g.name ? projHead(g.name, g.items.length, unit) : '')
         + (wrap ? wrap(body) : body)
